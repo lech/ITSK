@@ -4,31 +4,35 @@ This is a simple and dirty method to quickly unpack a SVG workspace using a few 
 
 ---
 
-## What's in the box?
+## What's included?
 
-Inkscape is a powerful vector drawing application, however the number of application icons are numerous. Previously this was managed through a single sheet of icons, now there are several hundred needed to create a complete theme. The goal of this is to help make the initial task of starting up a bit easier. You're welcome.
+Inkscape is a powerful vector drawing application, however the number of application icons are numerous. Previously this was managed through a single file as an icon sheet, now there are several hundred files needed to build up a complete theme. The goal of this is to help make the initial task of starting up much easier.
 
-Presently this is only geared to help quickly copy and create all the necessary files within a set on Windows leveraging a little bit of PowerShell to do so. It should be easy enough to pick this apart and translate something similar for Mac or Linux. If this already exists, please let me know.
+This method was developed to help quickly prepare and copy all of the necessary files on Windows leveraging a little bit of PowerShell to do so. It should be easy enough to understand and pick apart to translate for Bash or any other shell scripting language on Mac or Linux. If something like this already exists, drop me a message and let me know.
+
+For more, see [Creating a multicolor icon](https://wiki.inkscape.org/wiki/Creating_a_multicolor_icon) on the  [Inkscape Wiki](https://wiki.inkscape.org/wiki/Inkscape) for a more in-depth and practical guides on creating icons and themes.
 
 ### How to use:
 
-> **Notes and warnings**: All operations are performed within the local working directory.
-  - ALWAYS make backups of all your work!
+> **Notes and warnings**: All operations are performed within the local `".\"` working directory.
+  - ALWAYS make backups of your work!
   - Running this multiple times can and will result in overwriting existing files rolling you back to a blank state.
   - If the output folder needed to copy into does not exist, it will need to be created.
-  - Odds are you will only need to use this once, after your files are created it's wise to move/remove these files from your working directory after.
-  - This does not create any related index.theme or any other files for you. Those will still need to be created manually.
+  - Odds are you will only need to use this once, after your files are created it's wise to move/remove these files or your working directory after.
+  - This does not create the index.theme, gtkrc or any other files for you. Those will still need to be created and defined manually.
 
   1. Extract this project to its own directory.
-  2. Create a new `actions` directory, this is where all files will be created.
-  3. From PowerShell, run `.\workspace.ps1` or copy and paste the one-liner used below.
-  4. Within the `actions` directory, review the files created.
-  5. Draw your own icons and open the `_index.html` to preview your work in a browser.
+  2. Edit the CSV and your SVG source files, set them up and make them your own.
+  3. Create a new `actions` directory, this is where all files will be created.
+  4. From PowerShell, run `.\workspace.ps1` or copy and paste the one-liner used below.
+  5. Within the `actions` directory, review the files created.
+  6. Draw your own icons and open the `_index.html` to preview your work in a browser.
 
 ---
 
 ## The Files
 
+This sections outlines all the included and necessary files.
 
 ### The icons.html
 
@@ -38,11 +42,11 @@ All icons are scaled to `64x64` pixels for easy viewing. If included on copy, it
 
 ### SVG source files
 
-Included are two core SVG files: `blank256grid.svg` and `blank384grid.svg`. Edit these and make them your own before deploying or simply use your own. Setup your document properties: author info, licensing, and everything else first.
+Included are two core SVG files: `blank256grid.svg` and `blank384grid.svg`. Edit these and make them your own before deploying or include your own from the start and rewrite the CSV. Setup your document properties: author info, licensing, and everything here first.
 
-If you've examined the included CSV file, you will see that I switch between `blank256grid.svg` and `blank384grid.svg` which are `256x256` and `384x384` blank sources with a grid and all metadata attached. As Inkscape scales icons between multiples of 8 and 12 pixels throughout the entire UI this helps maintain some consistency.
+If you've examined the included CSV file, you will see that I switch between `blank256grid.svg` and `blank384grid.svg` which are `256x256` and `384x384` blank sources with a grid and all metadata attached. As Inkscape scales icons in multiples of 6 and 8 (16/24/32/48/64/96) pixels throughout the UI, this helps maintain some level of alignment and consistency allowing for thicker lines.
 
-Scaling these files up in size also allows for ease of editing at a reasonable default size and offers some finer control for pixel-perfect sharpness after they're resized within the Inkscape UI.
+Scaling these files up in size also provides some ease of editing at a reasonable default size. And offers some finer control for pixel-perfect sharpness after they're brought back in and resized within the Inkscape UI.
 
 ### The workspace.csv
 
@@ -100,7 +104,9 @@ You may also want to add `.\icons.html,.\actions\_icons.html` which will include
 
 ## License
 
-Copyright 2022 Lech Deregowski
+MIT License
+
+Copyright (c) 2022 Lech Deregowski
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
